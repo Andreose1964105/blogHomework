@@ -91,32 +91,38 @@ function resetBox() {
 
            <section id="theory" style="margin-top: 50px;">
     <div class="description" style="text-align: left;">
-        <h3>2. Theory: Dimostrazione della Ricorrenza di Welford</h3>
-        <p>L'obiettivo è ricavare le formule che permettono di aggiornare la media e la somma dei quadrati degli scarti (devianza) in modo incrementale.</p>
-
-        <h4>Aggiornamento della media</h4>
-        <p>Partiamo dalla definizione di media per $n$ osservazioni:</p>
-        <p style="text-align: center;">$$\bar{x}_n = \frac{1}{n} \sum_{i=1}^{n} x_i = \frac{1}{n} (x_n + \sum_{i=1}^{n-1} x_i)$$</p>
-        <p>Sapendo che $\sum_{i=1}^{n-1} x_i = (n-1)\bar{x}_{n-1}$, otteniamo:</p>
-        <p style="text-align: center;">$$\bar{x}_n = \frac{x_n + (n-1)\bar{x}_{n-1}}{n} = \bar{x}_{n-1} + \frac{x_n - \bar{x}_{n-1}}{n}$$</p>
-        <p>Definiamo lo scarto $\delta = x_n - \bar{x}_{n-1}$, allora: $\bar{x}_n = \bar{x}_{n-1} + \frac{\delta}{n}$.</p>
-
-        <h4>Aggiornamento della devianza ($SS_n$)</h4>
-        <p>Vogliamo esprimere $SS_n = \sum_{i=1}^{n} (x_i - \bar{x}_n)^2$ in funzione di $SS_{n-1}$. <br>
-        Scriviamo lo scarto del generico termine $i$ come: $(x_i - \bar{x}_n) = (x_i - \bar{x}_{n-1}) + (\bar{x}_{n-1} - \bar{x}_n)$.</p>
-        
-        <p>Sviluppando il quadrato e sommando per i primi $n-1$ termini:</p>
-        <p style="text-align: center;">$$\sum_{i=1}^{n-1} (x_i - \bar{x}_n)^2 = \sum_{i=1}^{n-1} (x_i - \bar{x}_{n-1})^2 + \sum_{i=1}^{n-1} (\bar{x}_{n-1} - \bar{x}_n)^2 + 2(\bar{x}_{n-1} - \bar{x}_n) \sum_{i=1}^{n-1} (x_i - \bar{x}_{n-1})$$</p>
-        
-        <p><strong>Proprietà:</strong> La somma degli scarti dalla media $\sum (x_i - \bar{x}_{n-1})$ è nulla, quindi il termine centrale scompare. Resta:</p>
-        <p style="text-align: center;">$$\sum_{i=1}^{n-1} (x_i - \bar{x}_n)^2 = SS_{n-1} + (n-1)(\bar{x}_{n-1} - \bar{x}_n)^2$$</p>
-
-        <p>Aggiungendo ora l'ultimo termine della sommatoria $(x_n - \bar{x}_n)^2$, otteniamo la <strong>formula finale di Welford</strong>:</p>
-        <p style="text-align: center; background: #f9f9f9; padding: 20px; border: 1px solid #ddd; border-radius: 8px;">
-            $$SS_n = SS_{n-1} + (x_n - \bar{x}_{n-1})(x_n - \bar{x}_n)$$
+        <h3>2. Theory: Relazione di ricorrenza di Welford / Knuth</h3>
+        <p>
+            La relazione di Welford è un metodo iterativo per calcolare la varianza aggiornando media e devianza ad ogni nuova osservazione. 
+            Questo approccio evita l'instabilità numerica e i problemi di approssimazione tipici dei metodi tradizionali, garantendo precisione ed efficienza in contesti di analisi statistica e calcolo numerico.
         </p>
 
+        <h4>Aggiornamento della media</h4>
+        <p>Sia \(\bar{x}_n\) la media di \(n\) osservazioni. Possiamo scriverla in funzione della media precedente \(\bar{x}_{n-1}\):</p>
+        \[ \bar{x}_n = \frac{\sum_{i=1}^{n} x_i}{n} = \frac{x_n + \sum_{i=1}^{n-1} x_i}{n} \]
+        <p>Sapendo che \(\sum_{i=1}^{n-1} x_i = (n-1)\bar{x}_{n-1}\), sostituendo otteniamo:</p>
+        \[ \bar{x}_n = \frac{x_n + (n-1)\bar{x}_{n-1}}{n} = \bar{x}_{n-1} + \frac{x_n - \bar{x}_{n-1}}{n} \]
+
+        <h4>Aggiornamento della devianza (\(SS_n\))</h4>
+        <p>Vogliamo trovare una relazione ricorsiva per la somma dei quadrati degli scarti \(SS_n = \sum_{i=1}^{n} (x_i - \bar{x}_n)^2\). Partiamo separando l'ultimo termine:</p>
+        \[ SS_n = \sum_{i=1}^{n-1} (x_i - \bar{x}_n)^2 + (x_n - \bar{x}_n)^2 \]
+        
+        <p>Per i termini della sommatoria, applichiamo l'artificio di aggiungere e sottrarre \(\bar{x}_{n-1}\):</p>
+        \[ (x_i - \bar{x}_n) = (x_i - \bar{x}_{n-1}) + (\bar{x}_{n-1} - \bar{x}_n) \]
+        
+        <p>Elevando al quadrato ed espandendo il binomio:</p>
+        \[ \sum_{i=1}^{n-1} (x_i - \bar{x}_n)^2 = \sum_{i=1}^{n-1} (x_i - \bar{x}_{n-1})^2 + \sum_{i=1}^{n-1} (\bar{x}_{n-1} - \bar{x}_n)^2 + 2(\bar{x}_{n-1} - \bar{x}_n) \sum_{i=1}^{n-1} (x_i - \bar{x}_{n-1}) \]
+
+        <p><strong>Proprietà fondamentale:</strong> Poiché la somma degli scarti dalla propria media è nulla, \(\sum_{i=1}^{n-1} (x_i - \bar{x}_{n-1}) = 0\), il termine centrale scompare. Otteniamo:</p>
+        \[ \sum_{i=1}^{n-1} (x_i - \bar{x}_n)^2 = SS_{n-1} + (n-1)(\bar{x}_{n-1} - \bar{x}_n)^2 \]
+
+        <p>Sostituendo questa espressione nella formula iniziale di \(SS_n\) e utilizzando la relazione di aggiornamento della media \(\bar{x}_n - \bar{x}_{n-1} = \frac{x_n - \bar{x}_{n-1}}{n}\), dopo alcune manipolazioni algebriche arriviamo alla forma finale:</p>
+        
+        <div style="background: #f9f9f9; padding: 20px; border: 1px solid #ddd; border-radius: 8px; margin: 20px 0; text-align: center;">
+            \[ SS_n = SS_{n-1} + (x_n - \bar{x}_{n-1})(x_n - \bar{x}_n) \]
+        </div>
+
         <h4>Conclusione</h4>
-        <p>La varianza si ottiene dividendo la devianza aggiornata $SS_n$ per il numero di osservazioni (o $n-1$). Questo algoritmo garantisce stabilità numerica ed evita il ricalcolo dell'intero dataset ad ogni passo.</p>
+        <p>La varianza campionaria si ottiene infine dividendo la devianza per i gradi di libertà: \(s^2 = \frac{SS_n}{n-1}\). Questo metodo permette di ottenere il risultato con un'unica passata sui dati (metodo <em>one-pass</em>).</p>
     </div>
 </section>
