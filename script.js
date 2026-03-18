@@ -1,14 +1,19 @@
 function cambiaTesto() {
+    // 1. Puntiamo agli elementi che vogliamo modificare
     const box = document.getElementById("box");
-    const ora = new Date().toLocaleTimeString();
+    const testo = document.getElementById("testo-dinamico");
     
-    // 1. Manipolazione del contenuto (HTML)
-    box.innerHTML = "<h4>Contenuto Aggiornato!</h4><p>Ultima modifica alle: " + ora + "</p>";
+    // 2. Manipolazione del contenuto (Testo e HTML)
+    testo.innerHTML = "<strong>Successo!</strong> Il contenuto è stato cambiato tramite JS esterno.";
     
-    // 2. Manipolazione dello stile (CSS via JS)
-    box.style.backgroundColor = "#e8f5e9";
-    box.style.border = "2px solid #4CAF50";
+    // 3. Manipolazione dello stile (CSS)
+    box.style.backgroundColor = "#e8f5e9"; // Un verde chiaro piacevole
+    box.style.border = "2px solid #4CAF50"; // Bordo verde scuro
+    box.style.padding = "30px"; // Cambiamo anche la spaziatura interna
     
-    // 3. Log in console per verifica
-    console.log("Il contenuto del DIV è stato modificato con successo alle " + ora);
+    // 4. Feedback visivo sul bottone
+    // Possiamo anche cambiare il testo del bottone stesso!
+    const bottone = event.target; 
+    bottone.innerText = "Modificato!";
+    bottone.style.opacity = "0.7";
 }
