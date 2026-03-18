@@ -26,24 +26,23 @@
             
           <section id="application">
     <div class="description">
-        <h3>1. Application: Manipolazione del DOM</h3>
+        <h3>1. Application: Varie Manipolazioni del DOM</h3>
         <p>
-            L'obiettivo di questo esercizio è dimostrare la capacità di interagire con gli elementi di una pagina HTML 
-            utilizzando JavaScript (JS). In particolare, il programma caricherà uno script esterno per:
+            In questa sezione vengono testate diverse tipologie di interazione con gli elementi HTML tramite uno script esterno:
         </p>
-        <ul>
-            <li>Modificare il contenuto testuale di un elemento <code>DIV</code>.</li>
-            <li>Cambiare dinamicamente gli stili CSS (colore e bordi).</li>
-            <li>Interagire con l'utente tramite eventi (click sul pulsante).</li>
-        </ul>
 
-        <div id="box">
-            <p id="testo-dinamico">In attesa di interazione...</p>
-            <button onclick="cambiaTesto()">Clicca per modificare</button>
+        <div id="box" style="transition: all 0.4s ease; min-height: 150px;">
+            <p id="testo-dinamico">Elemento target per le manipolazioni.</p>
+        </div>
+
+        <div class="controls" style="margin-top: 20px; display: flex; gap: 10px; flex-wrap: wrap;">
+            <button onclick="cambiaContenuto()">Modifica Testo</button>
+            <button onclick="cambiaColore()">Cambia Colore</button>
+            <button onclick="aggiungiElemento()">Aggiungi Elemento</button>
+            <button onclick="resetBox()">Reset</button>
         </div>
     </div>
 </section>
-
             <section id="theory">
                 <div class="description">
                     <h3>Theory: Algoritmo di Welford</h3>
