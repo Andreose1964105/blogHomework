@@ -45,7 +45,7 @@
                     <div class="source-code" style="text-align: left;">
                         <h4>Codice Utilizzato</h4>
                         
-                        <h5 style="margin-bottom: 5px;">HTML (Struttura)</h5>
+                        <h5 style="margin-bottom: 5px;">HTML </h5>
                         <pre style="background: #f9f9f9; border: 1px solid #eee; padding: 15px; border-radius: 5px; font-size: 0.85rem; max-height: 200px; overflow-y: auto;">
 &lt;div id="box"&gt;
     &lt;p id="testo-dinamico"&gt;Elemento target per le manipolazioni.&lt;/p&gt;
@@ -58,32 +58,44 @@
     &lt;button onclick="resetBox()"&gt;Reset&lt;/button&gt;
 &lt;/div&gt;
 
-&lt;!-- Collegamento al file esterno richiesto --&gt;
+&lt;!-- Collegamento al file esterno --&gt;
 &lt;script src="script.js"&gt;&lt;/script&gt;</pre>
 
-                        <h5 style="margin-bottom: 5px; margin-top: 20px;">JavaScript (Logica nel file script.js)</h5>
+                        <h5 style="margin-bottom: 5px; margin-top: 20px;">JavaScript </h5>
                         <pre style="background: #f9f9f9; border: 1px solid #eee; padding: 15px; border-radius: 5px; font-size: 0.85rem; max-height: 300px; overflow-y: auto;">
+// 1. Manipolazione del CONTENUTO
 function cambiaContenuto() {
     const testo = document.getElementById("testo-dinamico");
-    testo.innerHTML = "<strong>Testo modificato!</strong>";
+    testo.innerHTML = "<strong>Testo modificato!</strong> Ora il DIV contiene nuovi tag HTML.";
+    console.log("Contenuto cambiato.");
 }
 
+// 2. Manipolazione dello STILE (CSS)
 function cambiaColore() {
     const box = document.getElementById("box");
     const randomColor = Math.floor(Math.random()*16777215).toString(16);
     box.style.backgroundColor = "#" + randomColor;
     box.style.border = "3px solid #1a1a1a";
+    box.style.borderRadius = "20px";
 }
 
+// 3. Manipolazione della STRUTTURA (Aggiunta di nuovi nodi)
 function aggiungiElemento() {
     const box = document.getElementById("box");
     const nuovoParagrafo = document.createElement("p");
-    nuovoParagrafo.innerText = "Nuovo elemento aggiunto!";
+    nuovoParagrafo.innerText = "✨ Nuovo elemento creato alle " + new Date().toLocaleTimeString();
+    nuovoParagrafo.style.color = "#4CAF50";
     box.appendChild(nuovoParagrafo);
 }
 
+// 4. RESET (Ripristino dello stato iniziale)
 function resetBox() {
-    location.reload();
+    const box = document.getElementById("box");
+    box.innerHTML = '<p id="testo-dinamico">Elemento target per le manipolazioni.</p>';
+    box.style.backgroundColor = "white";
+    box.style.border = "1px solid #ddd";
+    box.style.borderRadius = "8px";
+    box.style.padding = "25px";
 }</pre>
                     </div>
                 </div>
@@ -126,3 +138,10 @@ function resetBox() {
         <p>La varianza campionaria si ottiene infine dividendo la devianza per i gradi di libertà: \(s^2 = \frac{SS_n}{n-1}\). Questo metodo permette di ottenere il risultato con un'unica passata sui dati.</p>
     </div>
 </section>
+            </div>
+    </div>
+
+    <script src="script.js"></script>
+
+</body>
+</html>
