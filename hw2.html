@@ -5,6 +5,7 @@
   <title>Homework 2</title>
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="hw2.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
   <div class="sidebar">
@@ -152,10 +153,9 @@
         <p><strong>Varianza:</strong> <span id="distVarianza">-</span></p>
       </div>
 
-      <details class="details-box">
-        <summary>Mostra istogramma</summary>
-        <div id="distOutput" class="data-box">
-          Nessuna distribuzione generata.
+      <div class="chart-box">
+  <canvas id="histChart"></canvas>
+</div>
         </div>
       </details>
     </div>
