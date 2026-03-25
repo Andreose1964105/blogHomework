@@ -58,8 +58,8 @@ function casoPatologico() {
   const n = 20;
 
   for (let i = 0; i < n; i++) {
-  dati.push(base + i + 1);
-}
+    dati.push(base + Math.floor(Math.random() * 10));
+  }
 
   const media = mediaNaive(dati);
   const varN = varianzaNaive(dati);
