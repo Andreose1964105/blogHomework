@@ -68,3 +68,4 @@ function casoPatologico() {
   document.getElementById("varNaivePat").textContent = varN.toFixed(6);
   document.getElementById("varWelfordPat").textContent = varW.toFixed(6);
   document.getElementById("listaPatologica").textContent = dati.join(", ");
+}
