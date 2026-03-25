@@ -1,20 +1,95 @@
-body {
-  font-family: Arial, sans-serif;
-  margin: 40px;
+.container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 30px 20px 60px 20px;
 }
 
-h1, h2 {
-  margin-bottom: 20px;
+.main-title {
+  text-align: center;
+  font-size: 4rem;
+  font-weight: 800;
+  margin-bottom: 30px;
 }
 
-button {
-  padding: 10px 15px;
-  margin: 10px 0;
-  font-size: 14px;
+.card {
+  background: #f3f3f3;
+  border-radius: 14px;
+  padding: 32px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+}
+
+.card h2 {
+  margin-top: 0;
+  margin-bottom: 18px;
+  font-size: 2rem;
+}
+
+.intro-text {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  margin-bottom: 24px;
+}
+
+.button-row {
+  margin: 20px 0;
+}
+
+.button-row button {
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 14px 22px;
+  font-size: 1rem;
+  font-weight: 600;
   cursor: pointer;
 }
 
-p {
-  margin: 5px 0;
+.button-row button:hover {
+  background-color: #449d48;
 }
 
+.results-box {
+  background: white;
+  border: 1px solid #d8d8d8;
+  border-radius: 10px;
+  padding: 18px 22px;
+  margin: 20px 0;
+}
+
+.results-box p {
+  margin: 10px 0;
+  font-size: 1.1rem;
+}
+
+.details-box {
+  margin: 18px 0 28px 0;
+  background: white;
+  border: 1px solid #d8d8d8;
+  border-radius: 10px;
+  padding: 14px 18px;
+}
+
+.details-box summary {
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 1.05rem;
+}
+
+.data-box {
+  margin-top: 14px;
+  padding: 14px;
+  background: #fafafa;
+  border: 1px solid #e2e2e2;
+  border-radius: 8px;
+  line-height: 1.6;
+  word-break: break-word;
+  font-family: monospace;
+  white-space: normal;
+}
+
+hr {
+  border: none;
+  border-top: 1px solid #d0d0d0;
+  margin: 35px 0;
+}
