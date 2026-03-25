@@ -3,27 +3,65 @@
 <head>
   <meta charset="UTF-8">
   <title>Homework 2</title>
+  <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="hw2.css">
 </head>
 <body>
 
-<h1>Homework 2</h1>
+  <div class="container">
+    <h1 class="main-title">Homework 2</h1>
 
-<h2>Parte A - Welford vs Naive</h2>
+    <div class="card">
+      <h2>Parte A: Media e varianza con la ricorrenza di Welford</h2>
 
-<button onclick="generaNumeri()">Genera numeri casuali</button>
+      <p class="intro-text">
+        In questa sezione genero numeri pseudocasuali uniformi in <code>[0,1)</code> e calcolo
+        media e varianza con due approcci: la formula naive e la ricorrenza di Welford.
+        L'obiettivo è mostrare che Welford è numericamente più stabile.
+      </p>
 
-<p><strong>Media:</strong> <span id="media"></span></p>
-<p><strong>Varianza (Naive):</strong> <span id="varNaive"></span></p>
-<p><strong>Varianza (Welford):</strong> <span id="varWelford"></span></p>
+      <div class="button-row">
+        <button onclick="generaNumeri()">Genera numeri casuali</button>
+      </div>
 
-<h3>Test caso patologico</h3>
-<button onclick="casoPatologico()">Esegui test</button>
+      <div class="results-box">
+        <p><strong>Numero di osservazioni:</strong> <span id="nRandom">-</span></p>
+        <p><strong>Media:</strong> <span id="media">-</span></p>
+        <p><strong>Varianza (Naive):</strong> <span id="varNaive">-</span></p>
+        <p><strong>Varianza (Welford):</strong> <span id="varWelford">-</span></p>
+      </div>
 
-<p><strong>Varianza Naive:</strong> <span id="varNaivePat"></span></p>
-<p><strong>Varianza Welford:</strong> <span id="varWelfordPat"></span></p>
+      <details class="details-box">
+        <summary>Mostra i numeri casuali generati</summary>
+        <div id="listaRandom" class="data-box"></div>
+      </details>
 
-<script src="hw2.js"></script>
+      <hr>
 
+      <h2>Test del caso patologico</h2>
+
+      <p class="intro-text">
+        Qui considero una sequenza di valori molto grandi ma tra loro vicini. In questi casi la formula
+        naive può soffrire di cancellazione numerica, mentre la ricorrenza di Welford resta stabile.
+      </p>
+
+      <div class="button-row">
+        <button onclick="casoPatologico()">Esegui test patologico</button>
+      </div>
+
+      <div class="results-box">
+        <p><strong>Media:</strong> <span id="mediaPat">-</span></p>
+        <p><strong>Varianza Naive:</strong> <span id="varNaivePat">-</span></p>
+        <p><strong>Varianza Welford:</strong> <span id="varWelfordPat">-</span></p>
+      </div>
+
+      <details class="details-box">
+        <summary>Mostra i valori del caso patologico</summary>
+        <div id="listaPatologica" class="data-box"></div>
+      </details>
+    </div>
+  </div>
+
+  <script src="hw2.js"></script>
 </body>
 </html>
