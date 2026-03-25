@@ -53,11 +53,11 @@ function varianzaWelford(dati) {
 }
 
 function casoPatologico() {
-  const base = 1000000000 + Math.floor(Math.random() * 1000000);
+  const base = 1000000000;
   const dati = [];
 
   for (let i = 0; i < 100000; i++) {
-    dati.push(base + i);
+    dati.push(base + (i % 5));
   }
 
   const media = mediaNaive(dati);
