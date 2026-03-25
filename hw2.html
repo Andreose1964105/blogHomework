@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <title>Homework 2</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<h1>Homework 2</h1>
+
+<h2>Parte A - Welford vs Naive</h2>
+
+<button onclick="generaNumeri()">Genera numeri casuali</button>
+
+<p><strong>Media:</strong> <span id="media"></span></p>
+<p><strong>Varianza (Naive):</strong> <span id="varNaive"></span></p>
+<p><strong>Varianza (Welford):</strong> <span id="varWelford"></span></p>
+
+<h3>Test caso patologico</h3>
+<button onclick="casoPatologico()">Esegui test</button>
+
+<p><strong>Varianza Naive:</strong> <span id="varNaivePat"></span></p>
+<p><strong>Varianza Welford:</strong> <span id="varWelfordPat"></span></p>
+
+<script src="hw2.js"></script>
+
+</body>
+</html>
