@@ -122,7 +122,15 @@
   <li><strong>Esponenziale(λ):</strong> 
     \( X = -\frac{1}{\lambda} \ln(1-U) \)
   </li>
-
+  <li><strong>Geometrica(p):</strong> 
+  dato \( U \sim U[0,1) \), si pone 
+  \( X = \left\lfloor \frac{\ln U}{\ln(1-p)} \right\rfloor \)
+</li>
+<li><strong>Poisson(λ):</strong> 
+  dati \( U_i \sim U[0,1) \), si calcola il prodotto 
+  \( P = U_1 \cdot U_2 \cdots U_k \) finché 
+  \( P < e^{-\lambda} \); allora \( X = k-1 \)
+</li>
   <li><strong>Weibull(k,λ):</strong> 
     \( X = \lambda \left[-\ln(1-U)\right]^{1/k} \)
   </li>
@@ -136,12 +144,7 @@
   </li>
 
   <li><strong>Normale standard:</strong> 
-    \( Z_1 = \sqrt{-2 \ln U_1} \cos(2\pi U_2) \),
-    \( Z_2 = \sqrt{-2 \ln U_1} \sin(2\pi U_2) \)
-  </li>
-
-  <li><strong>Normale N(μ,σ²):</strong> 
-    \( X = \mu + \sigma Z \)
+    \( Z = \sqrt{-2 \ln U_1} \cos(2\pi U_2) \),
   </li>
 
   <li><strong>Beta(α,β):</strong> 
