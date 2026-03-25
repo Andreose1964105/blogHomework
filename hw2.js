@@ -55,7 +55,7 @@ function varianzaWelford(dati) {
 function casoPatologico() {
   const base = 1000000000;
   const dati = [];
-  const n = 1000;
+  const n = 100;
 
   for (let i = 0; i < n; i++) {
     dati.push(base + Math.random() * 0.0001);
