@@ -73,3 +73,33 @@ hr {
 .button-row button:hover {
   background-color: #449d48;
 }
+.theory-box {
+  background: white;
+  border: 1px solid #d8d8d8;
+  border-radius: 10px;
+  padding: 20px 22px;
+  margin: 20px 0 25px 0;
+}
+
+.theory-list,
+.formula-list {
+  padding-left: 22px;
+  line-height: 1.7;
+  margin-bottom: 18px;
+}
+
+.theory-list li,
+.formula-list li {
+  margin-bottom: 10px;
+}
+
+.formula-text {
+  font-weight: 600;
+  margin: 16px 0 10px 0;
+}
+
+#distOutput {
+  white-space: pre-wrap;
+  font-family: monospace;
+  font-size: 0.95rem;
+}
