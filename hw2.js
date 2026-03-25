@@ -1,23 +1,24 @@
-// genera numeri casuali e calcola media + varianza
 function generaNumeri() {
-  let n = 1000;
-  let dati = [];
+  const n = 30;
+  const dati = [];
 
   for (let i = 0; i < n; i++) {
     dati.push(Math.random());
   }
 
-  let media = mediaNaive(dati);
-  let varN = varianzaNaive(dati);
-  let varW = varianzaWelford(dati);
+  const media = mediaNaive(dati);
+  const varN = varianzaNaive(dati);
+  const varW = varianzaWelford(dati);
 
+  document.getElementById("nRandom").innerText = n;
   document.getElementById("media").innerText = media.toFixed(6);
   document.getElementById("varNaive").innerText = varN.toFixed(6);
   document.getElementById("varWelford").innerText = varW.toFixed(6);
+
+  document.getElementById("listaRandom").innerText =
+    dati.map(x => x.toFixed(6)).join(", ");
 }
 
-
-// ---- MEDIA ----
 function mediaNaive(dati) {
   let somma = 0;
   for (let x of dati) {
@@ -26,21 +27,17 @@ function mediaNaive(dati) {
   return somma / dati.length;
 }
 
-
-// ---- VARIANZA NAIVE ----
 function varianzaNaive(dati) {
-  let media = mediaNaive(dati);
-  let somma = 0;
+  const media = mediaNaive(dati);
+  let sommaQuadrati = 0;
 
   for (let x of dati) {
-    somma += (x * x);
+    sommaQuadrati += x * x;
   }
 
-  return somma / dati.length - media * media;
+  return sommaQuadrati / dati.length - media * media;
 }
 
-
-// ---- VARIANZA WELFORD ----
 function varianzaWelford(dati) {
   let n = 0;
   let media = 0;
@@ -48,23 +45,32 @@ function varianzaWelford(dati) {
 
   for (let x of dati) {
     n++;
-    let delta = x - media;
+    const delta = x - media;
     media += delta / n;
-    let delta2 = x - media;
+    const delta2 = x - media;
     M2 += delta * delta2;
   }
 
   return M2 / n;
 }
 
-
-// ---- CASO PATOLOGICO ----
 function casoPatologico() {
-  let dati = [1000000, 1000001, 1000002, 1000003, 1000004];
+  const dati = [
+    1000000001,
+    1000000002,
+    1000000003,
+    1000000004,
+    1000000005
+  ];
 
-  let varN = varianzaNaive(dati);
-  let varW = varianzaWelford(dati);
+  const media = mediaNaive(dati);
+  const varN = varianzaNaive(dati);
+  const varW = varianzaWelford(dati);
 
+  document.getElementById("mediaPat").innerText = media.toFixed(6);
   document.getElementById("varNaivePat").innerText = varN;
   document.getElementById("varWelfordPat").innerText = varW;
+
+  document.getElementById("listaPatologica").innerText =
+    dati.join(", ");
 }
