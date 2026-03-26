@@ -82,9 +82,4 @@ function disegnaGrafico(valori) {
   ctx.stroke();
 }
 
-window.onload = function () {
-  generaRandomWalk();
-};
-}
-
 window.onload = generaRandomWalk;
