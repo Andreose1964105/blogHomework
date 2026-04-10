@@ -70,7 +70,66 @@
           <p><strong>Passi -1:</strong> <span id="minusCount">-</span></p>
         </div>
       </section>
+<section class="card">
+  <h2>Codice utilizzato</h2>
 
+  <p class="intro-text">
+    Di seguito riporto una parte essenziale del codice JavaScript utilizzato per generare
+    la Random Walk con passi di Rademacher e costruire il processo riscalato.
+  </p>
+
+  <h3 class="code-title">JavaScript</h3>
+  <div class="code-box">
+    <pre><code>
+function generateRademacher() {
+  return Math.random() < 0.5 ? -1 : 1;
+}
+
+function simulateScaledRandomWalk(n, T) {
+  const times = [];
+  const rwValues = [];
+  let partialSum = 0;
+
+  times.push(0);
+  rwValues.push(0);
+
+  for (let k = 1; k <= n; k++) {
+    const step = generateRademacher();
+    partialSum += step;
+
+    const scaledRW = partialSum / Math.sqrt(n);
+
+    times.push((k * T) / n);
+    rwValues.push(scaledRW);
+  }
+
+  return { times, rwValues };
+}
+    </code></pre>
+  </div>
+
+  <h3 class="code-title">HTML</h3>
+  <div class="code-box">
+    <pre><code>
+<div class="controls">
+  <div class="input-group">
+    <label for="nSteps">Numero di passi (n):</label>
+    <input type="number" id="nSteps" value="200" min="10" step="10" />
+  </div>
+
+  <div class="button-row">
+    <button onclick="simulateProcess()">Simula processo</button>
+    <button onclick="simulateLargeN()">Prova con n grande</button>
+    <button onclick="resetChart()">Reset</button>
+  </div>
+</div>
+
+<div class="chart-box">
+  <canvas id="processChart"></canvas>
+</div>
+    </code></pre>
+  </div>
+</section>
       <section class="card theory-card">
         <h2>Theory: Principio di Invarianza di Donsker</h2>
 
