@@ -1,18 +1,21 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-  <script>
-  window.MathJax = {
-    tex: { inlineMath: [['\\(', '\\)'], ['$', '$']] },
-    svg: { fontCache: 'global' }
-  };
-</script>
-<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
   <title>Homework 4</title>
+
   <link rel="stylesheet" href="style.css" />
   <link rel="stylesheet" href="hw4.css" />
+
+  <script>
+    window.MathJax = {
+      tex: { inlineMath: [['\\(', '\\)'], ['$', '$']] },
+      svg: { fontCache: 'global' }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
 </head>
 <body>
   <div class="sidebar">
@@ -22,74 +25,72 @@
 
     <div class="dropdown">
       <button class="dropbtn">Homework ▼</button>
-          <div class="dropdown-content">
-            <a href="hw1.html">Homework 1</a>
-            <a href="hw2.html">Homework 2</a>
-            <a href="hw3.html">Homework 3</a>
-            <a href="hw4.html">Homework 4</a>
-
-            </div>
+      <div class="dropdown-content">
+        <a href="hw1.html">Homework 1</a>
+        <a href="hw2.html">Homework 2</a>
+        <a href="hw3.html">Homework 3</a>
+        <a href="hw4.html">Homework 4</a>
+      </div>
     </div>
   </div>
 
   <div class="main-content">
-   <div class="container-centrato">
-    <h1 class="main-title">Homework 4</h1>
+    <div class="container-centrato">
+      <h1 class="main-title">Homework 4</h1>
 
-    <div class="card">
-      <h2>Application: Random Walk scalata e convergenza al Moto Browniano</h2>
+      <section class="card">
+        <h2>Application: Random Walk scalata e convergenza al Moto Browniano</h2>
 
-    <p class="intro-text">
-      In questa sezione mostro come una Random Walk discreta, costruita con passi di
-      Rademacher (+1 e -1) e opportunamente riscalata per <strong>1 / √n</strong>,
-      tenda al Moto Browniano Aritmetico al crescere del numero di passi.
-    </p>
+        <p class="intro-text">
+          In questa sezione mostro come una Random Walk discreta, costruita con passi di
+          Rademacher (+1 e -1) e opportunamente riscalata per <strong>\( \frac{1}{\sqrt{n}} \)</strong>,
+          tenda al Moto Browniano Aritmetico al crescere del numero di passi.
+        </p>
 
-    <div class="controls">
-      <div class="input-group">
-        <label for="nSteps">Numero di passi (n):</label>
-        <input type="number" id="nSteps" value="200" min="10" step="10" />
-      </div>
+        <div class="controls">
+          <div class="input-group">
+            <label for="nSteps">Numero di passi (n):</label>
+            <input type="number" id="nSteps" value="200" min="10" step="10" />
+          </div>
 
-      <div class="input-group">
-        <label for="timeHorizon">Orizzonte temporale (T):</label>
-        <input type="number" id="timeHorizon" value="1" min="1" step="1" />
-      </div>
+          <div class="input-group">
+            <label for="timeHorizon">Orizzonte temporale (T):</label>
+            <input type="number" id="timeHorizon" value="1" min="1" step="1" />
+          </div>
 
-      <div class="button-row">
-        <button type="button" onclick="simulateProcess()">Simula processo</button>
-        <button type="button" onclick="simulateLargeN()">Prova con n grande</button>
-        <button type="button" onclick="resetChart()">Reset</button>
-      </div>
-    </div>
+          <div class="button-row">
+            <button type="button" onclick="simulateProcess()">Simula processo</button>
+            <button type="button" onclick="simulateLargeN()">Prova con n grande</button>
+            <button type="button" onclick="resetChart()">Reset</button>
+          </div>
+        </div>
 
-    <div class="chart-box">
-      <canvas id="processChart"></canvas>
-    </div>
+        <div class="chart-box">
+          <canvas id="processChart"></canvas>
+        </div>
 
-    <div class="results-box">
-      <p><strong>n:</strong> <span id="outN">-</span></p>
-      <p><strong>T:</strong> <span id="outT">-</span></p>
-      <p><strong>Valore finale RW scalata:</strong> <span id="finalRW">-</span></p>
-      <p><strong>Passi +1:</strong> <span id="plusCount">-</span></p>
-      <p><strong>Passi -1:</strong> <span id="minusCount">-</span></p>
-    </div>
-  </section>
+        <div class="results-box">
+          <p><strong>n:</strong> <span id="outN">-</span></p>
+          <p><strong>T:</strong> <span id="outT">-</span></p>
+          <p><strong>Valore finale RW scalata:</strong> <span id="finalRW">-</span></p>
+          <p><strong>Passi +1:</strong> <span id="plusCount">-</span></p>
+          <p><strong>Passi -1:</strong> <span id="minusCount">-</span></p>
+        </div>
+      </section>
 
-  <section class="card">
-    <h2>Codice utilizzato</h2>
+      <section class="card">
+        <h2>Codice utilizzato</h2>
 
-    <p class="intro-text">
-      Riporto di seguito la parte essenziale del <strong>codice JavaScript</strong>
-      utilizzato per implementare la simulazione. In particolare, il codice genera
-      i passi di Rademacher, costruisce la somma parziale e applica il riscalamento
-      <strong>1 / √n</strong> per ottenere il processo discreto da confrontare con il
-      comportamento browniano.
-    </p>
+        <p class="intro-text">
+          Riporto di seguito la parte essenziale del <strong>codice JavaScript</strong>
+          utilizzato per implementare la simulazione. In particolare, il codice genera
+          i passi di Rademacher, costruisce la somma parziale e applica il riscalamento
+          <strong>\( \frac{1}{\sqrt{n}} \)</strong> per ottenere il processo discreto.
+        </p>
 
-    <h3 class="code-title">JavaScript</h3>
-    <div class="code-box">
-      <pre><code>function generateRademacher() {
+        <h3 class="code-title">JavaScript</h3>
+        <div class="code-box">
+          <pre><code>function generateRademacher() {
   return Math.random() &lt; 0.5 ? -1 : 1;
 }
 
@@ -121,72 +122,74 @@ function simulateScaledRandomWalk(n, T) {
 
   return { times, rwValues, plusCount, minusCount };
 }</code></pre>
+        </div>
+      </section>
+
+      <section class="card theory-card">
+        <h2>Theory: Principio di Invarianza di Donsker</h2>
+
+        <div class="theory-text">
+          <p>
+            Il <strong>Principio di Invarianza di Donsker</strong>, noto anche come
+            <strong>teorema del limite funzionale</strong>, afferma che una Random Walk discreta
+            con incrementi indipendenti, media nulla e varianza finita, se opportunamente
+            riscalata, converge al <strong>Moto Browniano Aritmetico</strong> quando il numero
+            di passi tende all’infinito.
+          </p>
+
+          <p>
+            Nel nostro caso consideriamo una successione di variabili di
+            <strong>Rademacher</strong>, cioè variabili che assumono i valori
+            <strong>+1</strong> e <strong>−1</strong> con uguale probabilità.
+            Se indichiamo con \( \xi_1, \xi_2, \dots, \xi_k \) i primi incrementi,
+            il processo riscalato si può scrivere come:
+          </p>
+        </div>
+
+        <div class="formula-box">
+          <div class="formula-main">
+            \( X_n(t) = \frac{1}{\sqrt{n}} \sum_{i=1}^{k} \xi_i \)
+          </div>
+          <div class="formula-note">
+            con \( t = \frac{kT}{n} \), per \( k = 0,1,\dots,n \).
+          </div>
+        </div>
+
+        <div class="theory-text">
+          <p>
+            Il fattore \( \frac{1}{\sqrt{n}} \) è fondamentale perché consente di
+            stabilizzare la varianza della somma parziale. Senza questa normalizzazione,
+            la variabilità crescerebbe troppo rapidamente all’aumentare di \( n \),
+            mentre con il riscalamento il processo mantiene una dispersione compatibile
+            con quella del limite continuo.
+          </p>
+
+          <p>
+            L’idea centrale del teorema è che, aumentando il numero di suddivisioni
+            dell’intervallo temporale, la Random Walk scalata perde progressivamente il suo
+            carattere puramente discreto e assume un andamento globale sempre più simile
+            a quello di una traiettoria browniana.
+          </p>
+
+          <p>
+            Il risultato è importante perché mostra una proprietà di
+            <strong>invarianza</strong>: il limite non dipende dalla distribuzione specifica
+            dei passi, purché siano soddisfatte tre condizioni fondamentali:
+            <strong>indipendenza</strong>, <strong>media zero</strong> e
+            <strong>varianza finita</strong>.
+          </p>
+
+          <p>
+            In modo intuitivo, il principio di Donsker estende l’idea del teorema centrale
+            del limite dal caso delle singole somme al caso dell’intero
+            <strong>processo stocastico</strong>. Per questo motivo, la Random Walk
+            opportunamente riscalata costituisce un modello discreto naturale del
+            Moto Browniano Aritmetico.
+          </p>
+        </div>
+      </section>
     </div>
-  </section>
-
- <section class="card theory-card">
-  <h2>Theory: Principio di Invarianza di Donsker</h2>
-
-  <div class="theory-text">
-    <p>
-      Il <strong>Principio di Invarianza di Donsker</strong>, noto anche come
-      <strong>teorema del limite funzionale</strong>, afferma che una Random Walk discreta
-      con incrementi indipendenti, media nulla e varianza finita, se opportunamente
-      riscalata, converge al <strong>Moto Browniano Aritmetico</strong> quando il numero
-      di passi tende all’infinito.
-    </p>
-
-    <p>
-      Nel nostro caso consideriamo una successione di variabili di
-      <strong>Rademacher</strong>, cioè variabili che assumono i valori
-      <strong>+1</strong> e <strong>−1</strong> con uguale probabilità.
-      Se indichiamo con \(\xi_1, \xi_2, \dots, \xi_k\) i primi incrementi,
-      il processo riscalato si può scrivere come:
-    </p>
   </div>
-
-  <div class="formula-box">
-    <div class="formula-main">
-      \( X_n(t) = \frac{1}{\sqrt{n}} \sum_{i=1}^{k} \xi_i \)
-    </div>
-    <div class="formula-note">
-      con \( t = \frac{kT}{n} \), per \( k = 0,1,\dots,n \).
-    </div>
-  </div>
-
-  <div class="theory-text">
-    <p>
-      Il fattore \( \frac{1}{\sqrt{n}} \) è fondamentale perché consente di
-      stabilizzare la varianza della somma parziale. Senza questa normalizzazione,
-      la variabilità crescerebbe troppo rapidamente all’aumentare di \( n \);
-      con il riscalamento, invece, il processo mantiene una dispersione compatibile
-      con quella del limite continuo.
-    </p>
-
-    <p>
-      L’idea centrale del teorema è che, aumentando il numero di suddivisioni
-      dell’intervallo temporale, la Random Walk scalata perde progressivamente il suo
-      carattere puramente discreto e assume un andamento globale sempre più simile
-      a quello di una traiettoria browniana.
-    </p>
-
-    <p>
-      Il risultato è importante perché mostra una proprietà di
-      <strong>invarianza</strong>: il limite non dipende dalla distribuzione specifica
-      dei passi, purché siano soddisfatte tre condizioni fondamentali:
-      <strong>indipendenza</strong>, <strong>media zero</strong> e
-      <strong>varianza finita</strong>.
-    </p>
-
-    <p>
-      In modo intuitivo, il principio di Donsker estende l’idea del teorema centrale
-      del limite dal caso delle singole somme al caso dell’intero
-      <strong>processo stocastico</strong>. Per questo motivo, la Random Walk
-      opportunamente riscalata costituisce un modello discreto naturale del
-      Moto Browniano Aritmetico.
-    </p>
-  </div>
-</section>
 
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script src="hw4.js"></script>
