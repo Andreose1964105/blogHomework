@@ -204,3 +204,38 @@
     max-width: 260px;
   }
 }
+.theory-card {
+  text-align: center;
+}
+
+.theory-text {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.theory-text p {
+  font-size: 1.12rem;
+  line-height: 1.9;
+  margin-bottom: 22px;
+  text-align: center;
+}
+
+.formula-box {
+  background: #ffffff;
+  border: 1px solid #d7d7d7;
+  border-radius: 14px;
+  padding: 22px;
+  margin: 28px auto;
+  max-width: 650px;
+}
+
+.formula-main {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.formula-note {
+  font-size: 1rem;
+  color: #555;
+}
