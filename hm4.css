@@ -14,6 +14,7 @@
   display: block;
   width: 100%;
 }
+
 .card {
   background: #f8f8f8;
   border: 1px solid #d9d9d9;
@@ -28,6 +29,7 @@
   font-size: 2rem;
   margin-bottom: 22px;
   color: #111;
+  text-align: center;
 }
 
 .intro-text,
@@ -36,46 +38,51 @@
   line-height: 1.8;
   color: #222;
   margin-bottom: 22px;
+  text-align: center;
 }
 
 .controls {
   margin-bottom: 28px;
+  text-align: center;
 }
 
 .input-group {
-  margin-bottom: 18px;
+  margin-bottom: 16px;
 }
 
 .input-group label {
-  display: block;
+  display: inline-block;
+  min-width: 220px;
   font-weight: 700;
-  margin-bottom: 8px;
   font-size: 1.05rem;
+  text-align: right;
+  margin-right: 8px;
 }
 
 .input-group input {
-  width: 220px;
-  padding: 12px 14px;
+  width: 210px;
+  padding: 8px 10px;
   border: 1px solid #cfcfcf;
-  border-radius: 10px;
+  border-radius: 6px;
   font-size: 1rem;
   background: white;
 }
 
 .button-row {
   display: flex;
+  justify-content: center;
   flex-wrap: wrap;
-  gap: 14px;
-  margin-top: 10px;
+  gap: 10px;
+  margin-top: 18px;
 }
 
 .button-row button {
   background-color: #51b84d;
   color: white;
   border: none;
-  border-radius: 10px;
-  padding: 13px 22px;
-  font-size: 1.02rem;
+  border-radius: 8px;
+  padding: 12px 22px;
+  font-size: 1rem;
   font-weight: 700;
   cursor: pointer;
   transition: background 0.2s ease;
@@ -103,12 +110,43 @@
   border: 1px solid #d7d7d7;
   border-radius: 14px;
   padding: 22px 24px;
+  text-align: center;
 }
 
 .results-box p {
   font-size: 1.08rem;
   margin: 14px 0;
   color: #111;
+}
+
+.code-title {
+  font-size: 1.3rem;
+  margin-top: 24px;
+  margin-bottom: 12px;
+  color: #111;
+  text-align: left;
+}
+
+.code-box {
+  background: #ffffff;
+  border: 1px solid #d7d7d7;
+  border-radius: 14px;
+  overflow: hidden;
+}
+
+.code-box pre {
+  margin: 0;
+  padding: 18px 20px;
+  overflow-x: auto;
+  overflow-y: auto;
+  max-height: 280px;
+  font-size: 0.96rem;
+  line-height: 1.6;
+  background: #fcfcfc;
+  color: #222;
+  font-family: Consolas, Monaco, "Courier New", monospace;
+  white-space: pre;
+  text-align: left;
 }
 
 .theory-card {
@@ -119,18 +157,19 @@
   background: #ffffff;
   border: 1px solid #d7d7d7;
   border-radius: 14px;
-  padding: 18px;
-  margin: 24px auto;
-  max-width: 550px;
+  padding: 20px;
+  margin: 26px auto;
+  max-width: 650px;
 }
 
-.formula-box p {
-  margin: 8px 0;
-  font-size: 1.15rem;
+.formula-main {
+  font-size: 1.35rem;
+  font-weight: 600;
+  margin-bottom: 10px;
 }
 
 .formula-note {
-  font-size: 0.98rem;
+  font-size: 1rem;
   color: #555;
 }
 
@@ -150,6 +189,14 @@
 
   .card h2 {
     font-size: 1.5rem;
+  }
+
+  .input-group label {
+    display: block;
+    text-align: center;
+    min-width: auto;
+    margin-right: 0;
+    margin-bottom: 8px;
   }
 
   .input-group input {
