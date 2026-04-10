@@ -48,8 +48,9 @@ function simulateProcess() {
   }
 
   const result = simulateScaledRandomWalk(n, T);
-  updateChart(result.times, result.rwValues);
+
   updateResults(n, T, result);
+  updateChart(result.times, result.rwValues);
 }
 
 function simulateLargeN() {
@@ -69,6 +70,11 @@ function updateResults(n, T, result) {
 function updateChart(times, rwValues) {
   const canvas = document.getElementById("processChart");
   if (!canvas) return;
+
+  if (typeof Chart === "undefined") {
+    console.error("Chart.js non è stato caricato.");
+    return;
+  }
 
   const ctx = canvas.getContext("2d");
 
