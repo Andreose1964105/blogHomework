@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Homework 4</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="hw4.css" />
+</head>
+<body>
+  <div class="layout">
+    <aside class="sidebar">
+      <h2>MENÙ</h2>
+      <hr />
+      <nav>
+        <a href="index.html">Home</a>
+
+        <div class="dropdown">
+          <button class="dropbtn">Homework ▼</button>
+          <div class="dropdown-content">
+            <a href="hw1.html">Homework 1</a>
+            <a href="hw2.html">Homework 2</a>
+            <a href="hw3.html">Homework 3</a>
+            <a href="hw4.html">Homework 4</a>
+          </div>
+        </div>
+      </nav>
+    </aside>
+
+    <main class="content">
+      <h1 class="page-title">Homework 4</h1>
+
+      <section class="card">
+        <h2>Application: Random Walk scalata e convergenza al Moto Browniano</h2>
+
+        <p class="intro-text">
+          In questa sezione mostro come una Random Walk discreta, costruita con passi di
+          Rademacher (+1 e -1) e opportunamente riscalata per
+          <strong>1 / √n</strong>, tenda al Moto Browniano Aritmetico al crescere del numero di passi.
+        </p>
+
+        <div class="controls">
+          <div class="input-group">
+            <label for="nSteps">Numero di passi (n):</label>
+            <input type="number" id="nSteps" value="200" min="10" step="10" />
+          </div>
+
+          <div class="input-group">
+            <label for="timeHorizon">Orizzonte temporale (T):</label>
+            <input type="number" id="timeHorizon" value="1" min="1" step="1" />
+          </div>
+
+          <div class="button-row">
+            <button onclick="simulateProcess()">Simula processo</button>
+            <button onclick="simulateLargeN()">Prova con n grande</button>
+            <button onclick="resetChart()">Reset</button>
+          </div>
+        </div>
+
+        <div class="chart-box">
+          <canvas id="processChart"></canvas>
+        </div>
+
+        <div class="results-box">
+          <p><strong>n:</strong> <span id="outN">-</span></p>
+          <p><strong>T:</strong> <span id="outT">-</span></p>
+          <p><strong>Valore finale RW scalata:</strong> <span id="finalRW">-</span></p>
+          <p><strong>Valore finale Browniano simulato:</strong> <span id="finalBM">-</span></p>
+          <p><strong>Passi +1:</strong> <span id="plusCount">-</span></p>
+          <p><strong>Passi -1:</strong> <span id="minusCount">-</span></p>
+        </div>
+      </section>
+
+      <section class="card theory-card">
+        <h2>Theory: Principio di Invarianza di Donsker</h2>
+
+        <p>
+          Il <strong>Principio di Invarianza di Donsker</strong>, noto anche come
+          <strong>teorema del limite funzionale</strong>, afferma che una Random Walk discreta
+          con incrementi indipendenti, media nulla e varianza finita, se opportunamente riscalata,
+          converge al <strong>Moto Browniano Aritmetico</strong> quando il numero di passi tende all’infinito.
+        </p>
+
+        <p>
+          Nel nostro caso, partendo da variabili di <strong>Rademacher</strong>, cioè passi che assumono
+          valore +1 oppure -1 con uguale probabilità, definiamo il processo
+        </p>
+
+        <div class="formula-box">
+          <p>
+            X_n(t) = (1 / √n) · Σ ξ_i
+          </p>
+          <p class="formula-note">
+            con la somma estesa ai primi k passi, dove t = kT/n.
+          </p>
+        </div>
+
+        <p>
+          Il fattore <strong>1 / √n</strong> è fondamentale perché stabilizza la varianza del processo.
+          Senza questo riscalamento, al crescere di n la variabilità aumenterebbe troppo rapidamente.
+          Con questa normalizzazione, invece, il processo discreto assume una forma sempre più simile
+          a quella di una traiettoria browniana.
+        </p>
+
+        <p>
+          Il significato profondo del principio di invarianza è che il limite non dipende
+          dalla distribuzione specifica dei passi, purché siano soddisfatte alcune condizioni essenziali:
+          indipendenza, media zero e varianza finita. Per questo si parla di proprietà di
+          <strong>invarianza</strong>.
+        </p>
+
+        <p>
+          In termini intuitivi, aumentando il numero di suddivisioni temporali, la Random Walk scalata
+          perde il carattere fortemente discreto e mostra un comportamento sempre più regolare dal punto
+          di vista globale, avvicinandosi al Moto Browniano Aritmetico.
+        </p>
+      </section>
+    </main>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="hw4.js"></script>
+</body>
+</html>
